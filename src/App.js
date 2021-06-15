@@ -13,6 +13,16 @@ console.log("1 " + JSON.stringify(avnersCoin.chain[0].hash));
 console.log("2 " + JSON.stringify(avnersCoin.chain[1].hash));
 console.log("3 " + JSON.stringify(avnersCoin.chain[2].hash));
 
+
+/* git commands:
+git pull
+git status
+git add .
+git commit -m "what updated"
+git push
+*/
+
+
 // // ---- Mongoose ---- \\\\
 // var mongoose = require("mongoose");
 // const URL = "mongodb://localhost/toDoList_ReactJs";
