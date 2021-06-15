@@ -8,8 +8,10 @@ const { BlockChain, Block } = require("./model/block");
 let avnersCoin = new BlockChain();
 avnersCoin.addBlock(new Block(1, "10/6/2021", { amount: 4 }));
 avnersCoin.addBlock(new Block(2, "8/4/2021", { amount: 2 }));
+avnersCoin.addBlock(new Block(3, "8/4/2021", { amount: 3 }));
 console.log("1 " + JSON.stringify(avnersCoin.chain[0].hash));
 console.log("2 " + JSON.stringify(avnersCoin.chain[1].hash));
+console.log("3 " + JSON.stringify(avnersCoin.chain[2].hash));
 
 // // ---- Mongoose ---- \\\\
 // var mongoose = require("mongoose");
