@@ -1,5 +1,3 @@
-import logo from "./logo.svg";
-import "./App.css";
 import ExpenseItem from "./components/ExpenseItem";
 import Inputs from "./components/Inputs";
 
