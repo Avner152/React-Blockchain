@@ -1,5 +1,6 @@
 import ExpenseItem from "./components/ExpenseItem";
 import Inputs from "./components/Inputs";
+import { createApiClient } from './api'
 
 const { BlockChain, Block } = require("./model/block");
 
@@ -10,6 +11,8 @@ avnersCoin.addBlock(new Block(3, "8/4/2021", { amount: 3 }));
 console.log("1 " + JSON.stringify(avnersCoin.chain[0].hash));
 console.log("2 " + JSON.stringify(avnersCoin.chain[1].hash));
 console.log("3 " + JSON.stringify(avnersCoin.chain[2].hash));
+
+const api = createApiClient();
 
 
 
@@ -22,36 +25,6 @@ git commit -m "what updated"
 git push
 */
 
-// // ---- Mongoose ---- \\\\
-// var mongoose = require("mongoose");
-// const URL = "mongodb://localhost/toDoList_ReactJs";
-// const connection = mongoose.connection;
-// mongoose.connect(URL, { useNewUrlParser: true });
-
-// connection.on("open", () => {
-//   console.log("Connected...");
-// });
-
-// // ---- Express ---- \\\\
-// const express = require("express");
-// const app = express();
-
-// // Fetch
-// app.use(function (req, res, next) {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Methods", "*");
-//   next();
-// });
-
-// // Post
-// app.use(express.json());
-
-// const missionRouter = require("./routes/route-info");
-// app.use("/missions", missionRouter);
-
-// app.listen(3000, () => {
-//   console.log("Server is listening in port 3000");
-// });
 
 function App() {
   const last_block = avnersCoin.getLatestBlock();
