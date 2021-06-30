@@ -5,8 +5,8 @@ import Block from '../models/block.js';
 export const getAllBlocks = async (req, res) => {
     try {
         const blocks = await Block.find();
-        console.log(blocks);
-        res.status(200).json();
+        console.log();
+        res.status(200).json(blocks);
 
     } catch (error) {
         res.status(404).json({message: error.message});
