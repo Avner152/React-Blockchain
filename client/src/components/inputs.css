@@ -1,25 +1,35 @@
+.father {
+  display: block;
+  margin-left: 5vw;
+  margin-bottom: 9vw;
+  margin-top: 2vw;
+}
+
+.father h2 {
+  font-size: 1.1vw;
+}
+
 .form__field {
   font-family: "Viaoda Libre", cursive;
-  width: 100%;
+  width: 25vw;
+  display: block;
   border-bottom: 2px solid #9b9b9b;
-  outline: 5;
-  font-size: 1.3rem;
+  outline: 0.5;
+  font-size: 1vw;
   color: rgb(0, 0, 0);
-  padding: 7px 0;
+  padding: 0.2vw 0;
   background: transparent;
   transition: border-color 0.2s;
 }
 
 textarea {
   font-family: "ViaoDa Libre", cursive;
-  width: 100%;
-  height: 350px;
-  /* border: 2; */
+  height: 10vw;
+  display: block;
   border-bottom: 2px solid #9b9b9b;
   outline: 5;
-  font-size: 1.3rem;
+  font-size: 1.3vw;
   color: rgb(0, 0, 0);
-  padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
 }
