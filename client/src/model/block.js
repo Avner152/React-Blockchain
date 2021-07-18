@@ -9,13 +9,13 @@ class Transaction {
 }
 
 class Block {
-  constructor(index, timeStamp, transaction, prevHash = "") {
+  constructor(index, nonce, transaction, prevHash = "") {
     this.index = index;
+    this.nonce = 0;
     this.transaction = transaction;
     this.prevHash = prevHash;
     this.hash = this.calculateHash();
-    this.nonce = 0;
-    this.timeStamp = timeStamp;
+    this.timeStamp = Date.now;
   }
 
   calculateHash() {
