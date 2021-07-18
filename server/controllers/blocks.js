@@ -8,7 +8,7 @@ import Block from '../models/block.js';
 export const getAllBlocks = async (req, res) => {
     try {
         const blocks = await Block.find();
-        res.status(200).json(blocks);
+        res.json(blocks);
         console.log(blocks)
 
     } catch (error) {
@@ -17,8 +17,11 @@ export const getAllBlocks = async (req, res) => {
     }
 }
 export const createBlock = async (req, res) => {
-    const post = req.body.block;
-    const newBlock = new Block(post.id, post.nonce, post.transaction, post.hash, post.prevHash)
+    const post = req.params;
+    
+    const newBlock = await new Block(req.params.id, req.params.nonce, req.params.transaction, req.params.hash, req.params.prevHash)
+    console.log(post.id)
+    console.log("before savong:"+ newBlock)
     const tempBlock = new Block({id: "10",  transaction: 'asdg', prevHash: 'afgasfh', hash: 'asdgag', nonce:"0"})
 
    try {

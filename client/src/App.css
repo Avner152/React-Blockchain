@@ -1,6 +1,7 @@
 .App {
   display: inline-block;
   width: 100%;
+  background-color: rgb(255, 255, 255)
 }
 
 .App h1 {

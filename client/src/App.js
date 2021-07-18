@@ -1,4 +1,6 @@
 import ExpenseItem from "./components/ExpenseItem";
+import NewBlock from "./components/NewBlock"
+
 import Inputs from "./components/Inputs";
 import { createApiClient } from "./api";
 import "./App.css";
@@ -9,7 +11,7 @@ const { BlockChain, Block, Transaction } = require("./model/block");
 
 var bitCoin = new BlockChain();
 
- bitCoin.addBlock(new Block(1, "8/4/2021", new Transaction("120","A","B" )));
+
 
 const api = createApiClient();
 
@@ -27,18 +29,21 @@ function App() {
   const [chain, setChain] = useState({id:"", nonce:"", transaction:"", prevHash:"", hash:"", timeStamp:""});
 
   useEffect(() => {
-    const fetchBlockChain = async () => {
-     
-      const response =  await api.getBlocks();
-      const blocks = response.data
-      console.log(blocks)
-    
-       setChain(blocks);
+    const fetchBlockChain = () => {
+     try {
+      const response =  api.getBlocks();
+      response.then(res => setChain(res));
+      
+       
+     } catch (error) {
+       console.log(error)
+       
+     }
+  
+
 
     };
     fetchBlockChain();
-   
-  
 
   },[])
   console.log(chain)
@@ -76,6 +81,9 @@ function App() {
           <li>
             <Link to="/chain">Chain</Link>
           </li>
+          <li>
+            <Link to="/new">Create New</Link>
+          </li>
         </ul>
       </nav>
 
@@ -83,6 +91,7 @@ function App() {
       <Route path="/"><Home /></Route>
       <Route path="/hash"><ExpenseItem block={last_block} blockchain={bitCoin.chain} /></Route>
       <Route path="/chain"><Chain /></Route>
+      <Route path="/new"><NewBlock id ={2523465} prevHash = {last_block.prevHash} /></Route>
     </div>
       <h1 className="heads">SHA256 HASH</h1>
     

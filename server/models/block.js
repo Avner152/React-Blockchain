@@ -6,10 +6,11 @@ const blockSchema = mongoose.Schema({
         required: true,
         index: {unique: true}
     },
-    timeStamp: {
-        type: Date,
-        default: Date.now
-    },
+    nonce: {
+        type: String,
+        default: 0
+    }
+    ,
     transactions: {
         type: String,
     },
@@ -21,10 +22,11 @@ const blockSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    nonce: {
-        type: String,
-        default: 0
+    timeStamp: {
+        type: Date,
+        default: Date.now
     }
+   
 })
 
 const Block = mongoose.model('Block', blockSchema) 

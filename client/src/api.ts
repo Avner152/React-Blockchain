@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Block } from './model/block';
+import { Block, Transaction } from './model/block';
 
 const APIRootPath = 'http://localhost:5000'
 
@@ -8,7 +8,7 @@ const APIRootPath = 'http://localhost:5000'
 export type ApiClient = {
     getBlocks: () => Promise<Block[]>;
     getBlocksCount: () => Promise<number>;
-    createBlock: () => Promise<Block>;
+    createBlock: (id: number, nonce: number, transaction: string, prevHash: string, hash: string) => Promise<Block>;
 }
 
 export const createApiClient = (): ApiClient => {
@@ -17,10 +17,10 @@ export const createApiClient = (): ApiClient => {
             return axios.get(APIRootPath + "/blocks").then((res) => res.data);
         },
         getBlocksCount: () => {
-            return axios.get(APIRootPath + "/blocks").then((res) => res.data.count);
+            return axios.get(APIRootPath + "/blocks/count").then((res) => res.data.count);
         },
-        createBlock:  () => {
-            return axios.post(APIRootPath + "/blocks/new").then((res) => res.data);
+        createBlock:  (id: number, nonce: number, transaction: string, prevHash: string, hash: string) => {
+            return axios.post(APIRootPath + "/blocks/new" ,{params: {id: id, nonce:nonce, transaction:transaction, prevHash:prevHash, hash:hash}}).then((res) => res.data);
         }
     
     }

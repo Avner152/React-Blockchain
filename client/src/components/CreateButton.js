@@ -1,14 +1,16 @@
 import "./Buttons.css";
+import { createApiClient } from "../api";
 
+
+const api = createApiClient();
 function CreateButton() {
   return (
     <div>
-      <a href="#">
+
         <span>Create!</span>
-        <div class="wave"></div>
-      </a>
+        <div className="wave"></div>
     </div>
   );
 }
 
-export default Buttons;
+export default CreateButton;
