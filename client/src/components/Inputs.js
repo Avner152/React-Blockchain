@@ -1,23 +1,26 @@
 import { Block, BlockChain } from "../model/block";
 import "./inputs.css";
 import Buttons from "./Buttons";
+import React, { useState } from 'react';
 
 function Inputs(props) {
   var changed, fit_hash;
   var i = 1;
+  const [isNewValue, setIsNewValue] = useState(true);
+
 
   function onInputChange(event) {
     var hashes = document.querySelectorAll("#hash_input");
 
-    hashes[0].value = blockchain.chain[0].index;
-    hashes[1].value = blockchain.chain[0].nonce;
-    hashes[3].value = blockchain.chain[0].prevHash;
-    hashes[4].value = blockchain.chain[0].hash;
-
-    for (let i = 1; i < hashes.length; i++) {
-      // while (i % 3 != 0) {
-      // }
-    }
+    // hashes[0].value = blockchain.chain[0].index;
+    // hashes[1].value = blockchain.chain[0].nonce;
+    // hashes[3].value = blockchain.chain[0].prevHash;
+    // hashes[4].value = blockchain.chain[0].hash;
+    
+    // for (let i = 1; i < hashes.length; i++) {
+    //   // while (i % 3 != 0) {
+    //   // }
+    // }
 
     changed = event.target.value;
     var hash = event.currentTarget.nextElementSibling;

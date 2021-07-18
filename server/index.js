@@ -4,10 +4,12 @@ import mongoose from "mongoose";
 import cors from "cors";
 import blockRoutes from "./routes/blocks.js";
 
-//mongo pass: qG6hKLBumnBCO5B7
 
+//mongo pass: qG6hKLBumnBCO5B7
+var corsa = cors
 const app = express();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(corsa())
 
 const CONNECTION_URL =
   "mongodb+srv://dolevp:qG6hKLBumnBCO5B7@blockchain.orxgb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -15,7 +17,7 @@ const PORT = 5000;
 
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =>
+  .then(() => 
     app.listen(PORT, () => console.log("server started successfully"))
   )
   .catch((err) => console.log(err));
