@@ -9,13 +9,13 @@ class Transaction {
 }
 
 class Block {
-  constructor(index, nonce, transaction, prevHash = "") {
+  constructor(index, nonce, transaction, hash, prevHash = "", timeStamp) {
     this.index = index;
-    this.nonce = 0;
+    this.nonce = nonce;
     this.transaction = transaction;
     this.prevHash = prevHash;
-    this.hash = this.calculateHash();
-    this.timeStamp = Date.now;
+    this.hash = hash;
+    this.timeStamp = timeStamp;
   }
 
   calculateHash() {
@@ -29,6 +29,7 @@ class Block {
   }
 
   mineBlock(difficulty) {
+    this.nonce = 0;
     while (
       this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")
     ) {
@@ -45,7 +46,7 @@ class BlockChain {
   }
 
   createGenesisBlock() {
-    return new Block(0, "10/6/2021 ", "Genesis Block", "0");
+    return new Block(0, 0, "Genesis Block"," 0000000000000000000000000000000000000000000000000000000000000000","","sdfhs");
   }
   getLatestBlock() {
     return this.chain[this.chain.length - 1];
@@ -53,7 +54,7 @@ class BlockChain {
 
   addBlock(block) {
     block.prevHash = this.getLatestBlock().hash;
-    block.mineBlock(this.difficulty);
+    //block.mineBlock(this.difficulty);
     this.chain.push(block);
   }
 }

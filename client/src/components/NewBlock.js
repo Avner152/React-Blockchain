@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import CreateButton from './CreateButton'
 import "./inputs.css";
 import { createApiClient } from "../api";
@@ -7,7 +7,7 @@ const SHA256 = require("crypto-js/sha256");
 
 
 
-
+const MAX = 500000;
 const api = createApiClient();
 
 
@@ -17,15 +17,31 @@ function NewBlock(props) {
   const [nonce, setNonce] = useState(0);
   const [data, setData] = useState("")
   const [hash, setHash] = useState("")
+  const [timeStamp, settimeStamp] = useState(Date.now)
+
   const calculateHash = () => {
     setHash( SHA256(
-      props.id +
+      id +
         nonce +
-        props.prevHash +
-        Date.now +
+        prevHash +
+        timeStamp +
         data
     ).toString())
   }
+
+  const mineBlockV2 = async () => {
+    try {
+      console.log(hash, nonce)
+   const response = api.mineBlock(hash, ""+id+prevHash+timeStamp+data);
+   console.log(response)
+      response.then(res => {setHash(res.hash); setNonce(res.nonce)})
+    
+      
+    } catch (error) {
+      console.log(error)   
+    }
+   };
+
     
   return(
     <div className="father">
@@ -34,7 +50,7 @@ function NewBlock(props) {
       </h2>
       <input
         type="input"
-        id="hash_input"
+        id="input1"
         className="form__field"
         defaultValue={props.id}
         readOnly ={true}
@@ -46,17 +62,17 @@ function NewBlock(props) {
       </h2>
       <input
         type="input"
-        id="hash_input"
+        id="input2"
         className="form__field"
         value = {nonce}
         onChange={event => {setNonce(event.target.value); calculateHash(); }}
       ></input>
 
-      <h2 id="id" className="form__label">
+      <h2 id="data" className="form__label">
         Data:
       </h2>
       <textarea
-        id="hash_input"
+        id="input3"
         className="form__field"
         onChange={event => {setData(event.target.value); calculateHash() }}
         value = {data}
@@ -67,7 +83,7 @@ function NewBlock(props) {
       <input
         type="text"
         className="form__field"
-        id="hash_input"
+        id="input4"
         value ={props.prevHash}
         readOnly="readOnly"
       
@@ -78,11 +94,15 @@ function NewBlock(props) {
       <input
         type="text"
         className="form__field"
-        id="hash_input"
+        id="input5"
         readOnly="readOnly"
         value = {hash}
       ></input>
-      <Button variant="primary" size="lg" active onClick={() => { api.createBlock(id, nonce,  data, prevHash, hash)}}>Create Block!</Button>
+      <Button variant="primary" size="lg" active onClick={() => { 
+        api.createBlock(id, nonce,  data, prevHash, hash).
+        then()
+        .catch(err => console.error(err))}}>Create Block!</Button>
+      <Button variant="secondary" size="lg" onClick={() => {mineBlockV2()}}>MINE! </Button>
     
     </div>
   );

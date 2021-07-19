@@ -2,17 +2,18 @@ import  mongoose  from "mongoose";
 
 const blockSchema = mongoose.Schema({
     id: {
-        type: String,
+        type: Number,
         required: true,
-        index: {unique: true}
+        unique: true
     },
     nonce: {
-        type: String,
+        type: Number,
         default: 0
     }
     ,
     transactions: {
         type: String,
+        default: ""
     },
     prevHash: {
         type: String,
@@ -20,7 +21,8 @@ const blockSchema = mongoose.Schema({
     },
     hash: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     timeStamp: {
         type: Date,

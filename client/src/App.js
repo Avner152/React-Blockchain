@@ -15,6 +15,7 @@ var bitCoin = new BlockChain();
 
 const api = createApiClient();
 
+
 /* git commands:
 git pull
 git status
@@ -26,27 +27,31 @@ git push
 
 
 function App() {
-  const [chain, setChain] = useState({id:"", nonce:"", transaction:"", prevHash:"", hash:"", timeStamp:""});
-
+  const [blocksCount, setBlocksCount] = useState(-2);
+  const [blocks, setChain] = useState([{id:"", nonce:"", transaction:"", prevHash:"", hash:"", timeStamp:""}]); 
   useEffect(() => {
-    const fetchBlockChain = () => {
+    
+    const fetchBlockChain = async () => {
      try {
-      const response =  api.getBlocks();
-      response.then(res => setChain(res));
-      
-       
+    const countResponse = api.getBlocksCount();
+    const blocksResponse = api.getBlocks();
+    countResponse.then(res => setBlocksCount(res));
+    blocksResponse.then(res => setChain(res))
+
+     blocks.map((block) => {
+      var temp = new Block(block.id, block.nonce, block.transactions,block.hash, block.prevHash,  block.timeStamp)
+       bitCoin.addBlock(temp)
+    });
+    
      } catch (error) {
-       console.log(error)
-       
+       console.log(error)   
      }
-  
-
-
     };
     fetchBlockChain();
 
-  },[])
-  console.log(chain)
+  },[blocksCount])
+
+   
   const last_block = bitCoin.getLatestBlock();
   const Home = () => (
     <div>
@@ -89,9 +94,9 @@ function App() {
 
       { /* Route components are rendered if the path prop matches the current URL */}
       <Route path="/"><Home /></Route>
-      <Route path="/hash"><ExpenseItem block={last_block} blockchain={bitCoin.chain} /></Route>
+      <Route path="/hash"><ExpenseItem blockchain={bitCoin.chain} /></Route>
       <Route path="/chain"><Chain /></Route>
-      <Route path="/new"><NewBlock id ={2523465} prevHash = {last_block.prevHash} /></Route>
+      <Route path="/new"><NewBlock id ={blocksCount+1} prevHash = {last_block.hash} /></Route>
     </div>
       <h1 className="heads">SHA256 HASH</h1>
     

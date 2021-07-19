@@ -6,21 +6,18 @@ import React, { useState } from 'react';
 function Inputs(props) {
   var changed, fit_hash;
   var i = 1;
-  const [isNewValue, setIsNewValue] = useState(true);
+  const id = props.id
+  const prevHash = props.prevHash
+  const [nonce, setNonce] = useState(0);
+  const [data, setData] = useState("")
+  const [hash, setHash] = useState("")
+  const [timeStamp, settimeStamp] = useState("")
 
 
   function onInputChange(event) {
     var hashes = document.querySelectorAll("#hash_input");
 
-    // hashes[0].value = blockchain.chain[0].index;
-    // hashes[1].value = blockchain.chain[0].nonce;
-    // hashes[3].value = blockchain.chain[0].prevHash;
-    // hashes[4].value = blockchain.chain[0].hash;
-    
-    // for (let i = 1; i < hashes.length; i++) {
-    //   // while (i % 3 != 0) {
-    //   // }
-    // }
+    // hashes[0].value = blockchain.chain[0].index
 
     changed = event.target.value;
     var hash = event.currentTarget.nextElementSibling;
@@ -40,7 +37,8 @@ function Inputs(props) {
         type="input"
         id="hash_input"
         class="form__field"
-        onChange={onInputChange}
+        value = {eval(props.block.index+1)}
+       
       ></input>
 
       <h2 id="nonce" class="form__label">
@@ -50,7 +48,8 @@ function Inputs(props) {
         type="input"
         id="hash_input"
         class="form__field"
-        onChange={onInputChange}
+        value = {props.block.nonce}
+   
       ></input>
 
       <h2 id="id" class="form__label">
@@ -59,7 +58,8 @@ function Inputs(props) {
       <textarea
         id="hash_input"
         class="form__field"
-        onChange={onInputChange}
+        value = {props.block.transaction}
+ 
       ></textarea>
       <h2 id="prev" class="form__label">
         {"Previous: "}
@@ -68,6 +68,7 @@ function Inputs(props) {
         type="text"
         class="form__field"
         id="hash_input"
+        value = {props.block.prevHash}
         readonly="readonly"
       ></input>
       <h2 id="hash" class="form__label">
@@ -76,7 +77,7 @@ function Inputs(props) {
       <input
         type="text"
         class="form__field"
-        id="hash_input"
+        value = {props.block.hash}
         readonly="readonly"
       ></input>
       <Buttons></Buttons>
