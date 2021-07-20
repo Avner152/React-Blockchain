@@ -46,7 +46,7 @@ class BlockChain {
   }
 
   createGenesisBlock() {
-    return new Block(0, 0, "Genesis Block"," 0000000000000000000000000000000000000000000000000000000000000000","","sdfhs");
+    return new Block(0, 0, "Genesis Block","0000000000000000000000000000000000000000000000000000000000000000","","sdfhs");
   }
   getLatestBlock() {
     return this.chain[this.chain.length - 1];

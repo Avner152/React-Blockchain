@@ -7,7 +7,6 @@ const SHA256 = require("crypto-js/sha256");
 
 
 
-const MAX = 500000;
 const api = createApiClient();
 
 
@@ -22,17 +21,17 @@ function NewBlock(props) {
   const calculateHash = () => {
     setHash( SHA256(
       id +
-        nonce +
         prevHash +
         timeStamp +
-        data
+        data+
+        nonce
     ).toString())
   }
 
-  const mineBlockV2 = async () => {
+ const mineBlockV2 = async () => {
     try {
       console.log(hash, nonce)
-   const response = api.mineBlock(hash, ""+id+prevHash+timeStamp+data);
+   const response = api.mineBlock(hash, ""+(id-1)+prevHash+timeStamp+data);
    console.log(response)
       response.then(res => {setHash(res.hash); setNonce(res.nonce)})
     
@@ -85,7 +84,6 @@ function NewBlock(props) {
         className="form__field"
         id="input4"
         value ={props.prevHash}
-        readOnly="readOnly"
       
       ></input>
       <h2 id="hash" className="form__label">
@@ -95,7 +93,6 @@ function NewBlock(props) {
         type="text"
         className="form__field"
         id="input5"
-        readOnly="readOnly"
         value = {hash}
       ></input>
       <Button variant="primary" size="lg" active onClick={() => { 

@@ -2,31 +2,47 @@ import { Block, BlockChain } from "../model/block";
 import "./inputs.css";
 import Buttons from "./Buttons";
 import React, { useState } from 'react';
+import { Button} from 'react-bootstrap';
+import { createApiClient } from "../api";
+const SHA256 = require("crypto-js/sha256");
+
+const api = createApiClient();
+
 
 function Inputs(props) {
-  var changed, fit_hash;
-  var i = 1;
-  const id = props.id
-  const prevHash = props.prevHash
-  const [nonce, setNonce] = useState(0);
-  const [data, setData] = useState("")
-  const [hash, setHash] = useState("")
+  console.log(props)
+
+  var id = props.block.index
+  const prevHash = props.block.prevHash
+  const [nonce, setNonce] = useState(props.block.nonce);
+  const [data, setData] = useState(props.block.transaction)
+  const [hash, setHash] = useState(props.block.hash)
   const [timeStamp, settimeStamp] = useState("")
 
-
-  function onInputChange(event) {
-    var hashes = document.querySelectorAll("#hash_input");
-
-    // hashes[0].value = blockchain.chain[0].index
-
-    changed = event.target.value;
-    var hash = event.currentTarget.nextElementSibling;
-
-    // fit_hash = blockchain[0].calculateHash();
-    // hash.value = fit_hash;
+  const calculateHash = () => {
+    setHash( SHA256(
+      id +
+        prevHash +
+        timeStamp +
+        data +
+        nonce
+    ).toString())
   }
 
-  // document.getElementById("hash_input").value = fit_hash;
+  const mineBlockV2 = async () => {
+    try {
+      console.log(hash, nonce)
+   const response = api.mineBlock(hash, ""+(id)+prevHash+timeStamp+data);
+   console.log(response)
+      response.then(res => {setHash(res.hash); setNonce(res.nonce)})
+    
+      
+    } catch (error) {
+      console.log(error)   
+    }
+   };
+
+
 
   return (
     <div class="father">
@@ -37,7 +53,8 @@ function Inputs(props) {
         type="input"
         id="hash_input"
         class="form__field"
-        value = {eval(props.block.index+1)}
+        value = {props.block.index}
+        readOnly = {true}
        
       ></input>
 
@@ -46,19 +63,17 @@ function Inputs(props) {
       </h2>
       <input
         type="input"
-        id="hash_input"
-        class="form__field"
-        value = {props.block.nonce}
-   
+        value = {nonce}
+        onChange={event => {setNonce(event.target.value); calculateHash() }}
       ></input>
 
       <h2 id="id" class="form__label">
         {"Data:"}
       </h2>
       <textarea
-        id="hash_input"
-        class="form__field"
-        value = {props.block.transaction}
+
+        value = {data}
+        onChange={event => {setData(event.target.value); calculateHash() }}
  
       ></textarea>
       <h2 id="prev" class="form__label">
@@ -68,7 +83,7 @@ function Inputs(props) {
         type="text"
         class="form__field"
         id="hash_input"
-        value = {props.block.prevHash}
+        value = {prevHash}
         readonly="readonly"
       ></input>
       <h2 id="hash" class="form__label">
@@ -77,10 +92,11 @@ function Inputs(props) {
       <input
         type="text"
         class="form__field"
-        value = {props.block.hash}
+        value = {hash}
+        onChange={event => {setHash(event.target.value); }}
         readonly="readonly"
       ></input>
-      <Buttons></Buttons>
+    <Button variant="secondary" size="lg" onClick={() => {mineBlockV2()}}>MINE! </Button>
     </div>
   );
 }

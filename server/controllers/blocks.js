@@ -33,7 +33,7 @@ export const createBlock = async (req, res) => {
     const post = req.body.params;
     const newBlock = new Block({id:post.id,
                                 nonce:post.nonce,
-                                transaction:post.transaction,
+                                transactions:post.transaction,
                                 hash:post.hash,
                                 prevHash:post.prevHash});
 
@@ -54,7 +54,7 @@ export const mineBlock =  async (req, res) => {
     var nonce = 0
     while( hash.substring(0, DIFFICULTY) !== Array(DIFFICULTY + 1).join("0")){
         nonce= nonce+1;
-       hash = calculateHash(post.text + nonce)
+       hash = calculateHash(post.text , nonce)
         
     }
     console.log("mined hash = "+ hash + " nonce: "+nonce)
@@ -65,8 +65,7 @@ export const mineBlock =  async (req, res) => {
 }
 
 const calculateHash = (text, nonce) => {
-    return(sha256(text + nonce
-        
+    return (sha256(text + nonce   
       ).toString())
      
 

@@ -29,30 +29,10 @@ git push
 function App() {
   const [blocksCount, setBlocksCount] = useState(-2);
   const [blocks, setChain] = useState([{id:"", nonce:"", transaction:"", prevHash:"", hash:"", timeStamp:""}]); 
-  useEffect(() => {
-    
-    const fetchBlockChain = async () => {
-     try {
-    const countResponse = api.getBlocksCount();
-    const blocksResponse = api.getBlocks();
-    countResponse.then(res => setBlocksCount(res));
-    blocksResponse.then(res => setChain(res))
-
-     blocks.map((block) => {
-      var temp = new Block(block.id, block.nonce, block.transactions,block.hash, block.prevHash,  block.timeStamp)
-       bitCoin.addBlock(temp)
-    });
-    
-     } catch (error) {
-       console.log(error)   
-     }
-    };
-    fetchBlockChain();
-
-  },[blocksCount])
+ 
 
    
-  const last_block = bitCoin.getLatestBlock();
+   const last_block = bitCoin.getLatestBlock();
   const Home = () => (
     <div>
       <h2>Home</h2>
@@ -71,6 +51,27 @@ function App() {
     </div>
   );
   
+
+  useEffect(() => {
+    const fetchBlockChain = async () => {
+     try {
+    const countResponse = api.getBlocksCount();
+    const blocksResponse = api.getBlocks();
+     countResponse.then(res => setBlocksCount(res));
+      blocksResponse.then(res => setChain(res))
+  
+     } catch (error) {
+       console.log(error)   
+     }
+    };
+    fetchBlockChain();
+
+    blocks.map((block) => {
+      var temp = new Block(block.id, block.nonce, block.transactions,block.hash, block.prevHash,  block.timeStamp)
+       bitCoin.addBlock(temp)
+    });
+
+  },[blocksCount])
 
   return (
     <div className="App">
