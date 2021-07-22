@@ -9,7 +9,7 @@ import { Link, Route, Switch } from "react-router-dom";
 
 const { BlockChain, Block, Transaction } = require("./model/block");
 
-var bitCoin = new BlockChain();
+var bitCoin  = new BlockChain();
 
 
 
@@ -35,7 +35,7 @@ function App() {
    const last_block = bitCoin.getLatestBlock();
   const Home = () => (
     <div>
-      <h2>Home</h2>
+      {/* <h2>Home</h2> */}
     </div>
   );
   
@@ -68,7 +68,7 @@ function App() {
 
     blocks.map((block) => {
       var temp = new Block(block.id, block.nonce, block.transactions,block.hash, block.prevHash,  block.timeStamp)
-       bitCoin.addBlock(temp)
+         bitCoin.addBlock(temp)
     });
 
   },[blocksCount])
@@ -76,7 +76,16 @@ function App() {
   return (
     <div className="App">
       <div>
-      <nav className="navbar navbar-light">
+
+    <nav class="navMenu">
+      <Link to='/'><a >Home</a></Link>
+      <Link to='/hash'><a>Hash</a></Link>
+      <Link to='/chain'><a>Chain</a></Link>
+      <Link to='/new'><a>Create New</a></Link>
+      <div class="dot"></div>
+    </nav>
+
+      {/* <nav className="navbar navbar-light">
         <ul className="nav navbar-nav">
           <li>
             <Link to="/">Home</Link>
@@ -91,17 +100,17 @@ function App() {
             <Link to="/new">Create New</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
 
       { /* Route components are rendered if the path prop matches the current URL */}
+      <div class="avner">
       <Route path="/"><Home /></Route>
       <Route path="/hash"><ExpenseItem blockchain={bitCoin.chain} /></Route>
       <Route path="/chain"><Chain /></Route>
       <Route path="/new"><NewBlock id ={blocksCount+1} prevHash = {last_block.hash} /></Route>
-    </div>
-      <h1 className="heads">SHA256 HASH</h1>
-    
-    </div>
+      </div>
+    </div>    
+  </div>
   );
 }
 

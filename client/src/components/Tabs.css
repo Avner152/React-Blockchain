@@ -1,0 +1,154 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* body {
+    background: #fff;
+  } */
+
+  .container textarea{
+    width: 100%;
+    height: 12vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    font-size: 1.4vw;
+
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 42%;
+    height: 44vw;
+
+    position: relative;
+    background: #f1f1f1;
+    margin-left: 1vw ;
+    margin-top: 2vw;
+    word-break: break-all;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+  }
+
+
+  input{
+    width: 100%;
+    font-size: 1.4vw;
+    height: 2.2vw;
+    background-color: transparent;
+
+  }
+
+  .container a{
+    width: 100%;
+    height: 4vw;
+    cursor: pointer;
+    text-align: center;
+    font-size: 2vw;
+    margin-top: 1.5vw;
+    margin-bottom: 1vw;
+    background-color: #3eb1fd;
+  }
+
+  .container h2{
+    text-align: left;
+    margin-left: 1vw;
+    margin-top: .7vw;
+    margin-bottom: .7vw;
+
+  }
+  
+  .container h3{
+    text-align: left;
+    margin-left: 1vw;
+    margin-bottom: .3vw;
+  }
+
+
+  .bloc-tabs {
+    display: flex;
+  }
+  .tabs {
+    padding: 8px;
+    border-radius: 0.7vw !important;
+    text-align: center;
+    font-size: 1.2em;
+    width: 6vw;
+    background: rgba(128, 128, 128, 0.075);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+    box-sizing: content-box;
+    position: relative;
+    outline: none;
+  }
+  .tabs:not(:last-child){
+    border-right: 1px solid rgba(0, 0, 0, 0.274);
+  }
+  
+  .active-tabs  {
+    background: #c8e9ff;
+    color: #055c96;
+    font-weight: bold;
+    font-size: 1.7vw;
+    border-bottom: 1px solid transparent;
+  }
+  
+  
+  
+  button {
+    border: none;
+    
+  }
+  .content-tabs {
+    border-radius: 0vw !important;
+    flex-grow : 1;
+  }
+  .content {
+    background: white;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+  .content h2 {
+    padding: 0px 0 5px 0px;
+  }
+  .content hr {
+    width: 100px;
+    height: 2px;
+    background: #222;
+    margin-bottom: 5px;
+  }
+  .content p {
+    width: 100%;
+    height: 100%;
+  }
+  .active-content {
+    border-radius: 1.1vw;
+    display: block;
+    background-color: #c8e9ff75;
+  }
+  
+
+  #first{
+    margin-left: -.6vw;
+    display: -webkit-box;
+    width: 28.4%;
+    }
+
+  #first h2{
+    border-radius: 7px;
+    margin-top: -.5vw;
+    background-color: #07406675;
+    margin-right: .3vw;
+    margin-left: -0.4vw !important;
+  }
+
+  #first input{
+    border-radius: 5px;
+    height: 2.8vw;
+    margin-top: -0.44vw;
+    margin-left: -.4vw;
+    padding: .5vw;
+    border: solid #07406675;  }

@@ -46,7 +46,7 @@ function Inputs(props) {
 
   return (
     <div class="father">
-      <h2 id="index" class="form__label">
+      <h2 id="index" >
         {"Index: "}
       </h2>
       <input
@@ -58,11 +58,13 @@ function Inputs(props) {
        
       ></input>
 
-      <h2 id="nonce" class="form__label">
+      <h2 id="nonce">
         {"Nonce: "}
       </h2>
       <input
         type="input"
+        id="hash_input"
+        class="form__field"
         value = {nonce}
         onChange={event => {setNonce(event.target.value); calculateHash() }}
       ></input>
@@ -96,7 +98,9 @@ function Inputs(props) {
         onChange={event => {setHash(event.target.value); }}
         readonly="readonly"
       ></input>
-    <Button variant="secondary" size="lg" onClick={() => {mineBlockV2()}}>MINE! </Button>
+    <div className="btn_container" onClick={() => {mineBlockV2()}}>
+    <Buttons >MINE! </Buttons>
+    </div>
     </div>
   );
 }

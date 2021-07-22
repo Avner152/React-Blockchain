@@ -3,7 +3,7 @@ import "./Buttons.css";
 function Buttons() {
   return (
     <div>
-      <a href="">
+      <a>
         <span>MINE!</span>
         <div class="wave"></div>
       </a>

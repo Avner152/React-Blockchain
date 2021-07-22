@@ -1,8 +1,8 @@
 .father {
   display: block;
-  margin-left: 5vw;
-  margin-bottom: 9vw;
-  margin-top: 2vw;
+  margin-left: 2vw;
+  margin-bottom: 4vw;
+  margin-top: 1.5vw;
 }
 
 .father h2 {
@@ -24,10 +24,10 @@
 
 textarea {
   font-family: "ViaoDa Libre", cursive;
-  height: 10vw;
-  display: block;
-  border-bottom: 2px solid #9b9b9b;
-  outline: 5;
+  height: 19vw;
+  width: 25.5vw;
+ display: block;
+  border-bottom: .5vw solid #000;  
   font-size: 1.3vw;
   color: rgb(0, 0, 0);
   background: transparent;

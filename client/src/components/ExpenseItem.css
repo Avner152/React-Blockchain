@@ -4,14 +4,7 @@
   color: aliceblue;
 }
 
-.expense-item {
-  width: 100%;
-  display: inline-block;
-  box-shadow: 0 12px 8px rgba(168, 168, 168, 0.25);
 
-  border-radius: 25px;
-  background-color: #3eb1fd;
-}
 
 .son {
   display: inline-block;
