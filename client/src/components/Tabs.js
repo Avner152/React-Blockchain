@@ -29,8 +29,11 @@ function Tabs() {
     var binaryMessage = CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex);
     if (tmpKey.verify(binaryMessage, signature)) {
       console.log("is verify!");
+      document.getElementById('sign').style.backgroundColor = 'green';
+
     } else {
       console.log("not verify!");
+      document.getElementById('sign').style.backgroundColor = 'red';
     }
   };
 

@@ -10,8 +10,6 @@ const api = createApiClient();
 
 
 function Inputs(props) {
-  console.log(props)
-
   var id = props.block.index
   const prevHash = props.block.prevHash
   const [nonce, setNonce] = useState(props.block.nonce);
@@ -72,8 +70,8 @@ function Inputs(props) {
       <h2 id="id" class="form__label">
         {"Data:"}
       </h2>
+      {/* Todo:  create Component of Transaction */}
       <textarea
-
         value = {data[0].amount +", "+ data[0].from +", "+ data[0].to}
         onChange={event => {setData(event.target.value); calculateHash() }}
  
@@ -99,7 +97,7 @@ function Inputs(props) {
         readonly="readonly"
       ></input>
     <div className="btn_container" onClick={() => {mineBlockV2()}}>
-    <Buttons >MINE! </Buttons>
+    <Buttons name = {'MINE!'}></Buttons>
     </div>
     </div>
   );

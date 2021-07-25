@@ -16,9 +16,7 @@ function ExpenseItem(props) {
           </div>
         ))}
       </ul>
-      <Tabs/>
 
-      <Transtab/>
     </div>
   );
 }

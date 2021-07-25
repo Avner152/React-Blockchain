@@ -18,9 +18,10 @@
   }
   
   .container {
-    display: flex;
+    display: block;
+    margin: auto;
     flex-direction: column;
-    width: 42%;
+    width: 33%;
     height: 44vw;
 
     position: relative;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Keys.css";
-import Button from 'react-bootstrap/Button';
+import Buttons from './Buttons';
 import { createApiClient } from "../api";
 import Cookies from 'universal-cookie';
 
@@ -50,11 +50,10 @@ const  randomkeys = () => {
               <input className="private-input" type="input" value = {publicKey} >
               </input>
               </div>
-              <>
-              <Button variant="Primary" >Random! </Button>
-              </>
-       
-           
+              {/* Check CSS */}
+              <div className="btn_container" onClick={() => {randomkeys()}}>
+              <Buttons name = {"RANDOM!"}>Random</Buttons>
+              </div>
                   </div>
 
 

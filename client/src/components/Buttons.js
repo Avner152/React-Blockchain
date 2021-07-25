@@ -1,10 +1,10 @@
 import "./Buttons.css";
 
-function Buttons() {
-  return (
+function Buttons(props) {
+return (
     <div>
       <a>
-        <span>MINE!</span>
+        <span>{props.name}</span>
         <div class="wave"></div>
       </a>
     </div>
