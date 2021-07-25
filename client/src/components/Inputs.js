@@ -53,7 +53,7 @@ function Inputs(props) {
         type="input"
         id="hash_input"
         class="form__field"
-        value = {props.block.index}
+        value = {id}
         readOnly = {true}
        
       ></input>
@@ -74,7 +74,7 @@ function Inputs(props) {
       </h2>
       <textarea
 
-        value = {data}
+        value = {data[0].amount +", "+ data[0].from +", "+ data[0].to}
         onChange={event => {setData(event.target.value); calculateHash() }}
  
       ></textarea>

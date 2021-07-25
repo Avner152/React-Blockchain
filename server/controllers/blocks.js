@@ -35,7 +35,8 @@ export const createBlock = async (req, res) => {
                                 nonce:post.nonce,
                                 transactions:post.transaction,
                                 hash:post.hash,
-                                prevHash:post.prevHash});
+                                prevHash:post.prevHash,
+                                timeStamp:post.timeStamp});
 
     console.error("###SAVING###  Block No. "+ newBlock.id + "  ###SAVING###")
    try {
@@ -65,7 +66,7 @@ export const mineBlock =  async (req, res) => {
 }
 
 const calculateHash = (text, nonce) => {
-    return (sha256(text + nonce   
+    return (sha256(text + nonce  
       ).toString())
      
 

@@ -9,7 +9,7 @@ class Transaction {
 }
 
 class Block {
-  constructor(index, nonce, transaction, hash, prevHash = "", timeStamp) {
+  constructor(index, nonce, transaction, hash, prevHash , timeStamp) {
     this.index = index;
     this.nonce = nonce;
     this.transaction = transaction;
@@ -46,7 +46,7 @@ class BlockChain {
   }
 
   createGenesisBlock() {
-    return new Block(0, 0, "Genesis Block","0000000000000000000000000000000000000000000000000000000000000000","","sdfhs");
+    return new Block(0, 0, "Genesis Block","0000000000000000000000000000000000000000000000000000000000000000","",Date.now);
   }
   getLatestBlock() {
     return this.chain[this.chain.length - 1];

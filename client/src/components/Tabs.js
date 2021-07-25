@@ -1,21 +1,47 @@
 import { useState } from "react";
 import "./Tabs.css";
+import CryptoJS from "crypto-js";
+import Cookies from "universal-cookie";
+const EC = require("elliptic").ec;
+const ec = new EC("secp256k1");
+const cookies = new Cookies();
 
 function Tabs() {
   const [toggleState, setToggleState] = useState(1);
+  const [message, setMessage] = useState("");
+  const [publicKey, setPublicKey] = useState(cookies.get("publicKey"));
+  const [privateKey, setPrivateKey] = useState(cookies.get("privateKey"));
+  const [signature, setSignature] = useState("");
 
   const toggleTab = (index) => {
     setToggleState(index);
   };
 
+  const sign = () => {
+    var keypair = ec.keyFromPrivate(privateKey);
+    var binaryMessage = CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex);
+    var hexSignature = keypair.sign(binaryMessage).toDER("hex").toString();
+    setSignature(hexSignature);
+  };
+
+  const verify = () => {
+    var tmpKey = ec.keyFromPublic(publicKey, "hex");
+    var binaryMessage = CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex);
+    if (tmpKey.verify(binaryMessage, signature)) {
+      console.log("is verify!");
+    } else {
+      console.log("not verify!");
+    }
+  };
+
   return (
     <div className="container" id="sign">
-          <h2>Signature</h2>
+      <h2>Signature</h2>
       <div className="bloc-tabs">
-
         <button
           className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-          onClick={() => toggleTab(1)}>
+          onClick={() => toggleTab(1)}
+        >
           Sign
         </button>
         <button
@@ -24,7 +50,6 @@ function Tabs() {
         >
           Verify
         </button>
-        
       </div>
 
       <div className="content-tabs">
@@ -32,29 +57,43 @@ function Tabs() {
           className={toggleState === 1 ? "content  active-content" : "content"}
         >
           <h3>Message</h3>
-          <textarea></textarea>
+          <textarea
+            onChange={(event) => setMessage(event.target.value)}
+            value={message}
+          ></textarea>
           <h3>Private Key</h3>
-          <input></input>
+          <input
+            value={privateKey}
+            onChange={(event) => setPrivateKey(event.target.value)}
+          ></input>
 
-        <a id="sign_btn" onClick=""><b>Sign</b></a>
+          <a id="sign_btn" onClick={() => sign()}>
+            <b>Sign</b>
+          </a>
 
           <h3>Message Signature</h3>
-          <input></input>
+          <input value={signature} readOnly={true}></input>
         </div>
         <div
           className={toggleState === 2 ? "content  active-content" : "content"}
         >
-        <h3>Message</h3>
-          <textarea></textarea>
+          <h3>Message</h3>
+          <textarea
+            onChange={(event) => setMessage(event.target.value)}
+            value={message}
+          ></textarea>
           <h3>Public Key</h3>
-          <input></input>
-          
-          <br/><br/>
-          <h3>Signature</h3>
-          
-          <input></input>
+          <input value={publicKey} readOnly></input>
 
-          <a id="sign_btn" onClick=""><b>Verify</b></a>
+          <br />
+          <br />
+          <h3>Signature</h3>
+
+          <input value={signature} readOnly></input>
+
+          <a id="sign_btn" onClick={() => verify()}>
+            <b>Verify</b>
+          </a>
         </div>
       </div>
     </div>

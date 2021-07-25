@@ -96,7 +96,7 @@ function NewBlock(props) {
         value = {hash}
       ></input>
       <Button variant="primary" size="lg" active onClick={() => { 
-        api.createBlock(id, nonce,  data, prevHash, hash).
+        api.createBlock(id, nonce,  data, prevHash, hash, timeStamp).
         then()
         .catch(err => console.error(err))}}>Create Block!</Button>
       <Button variant="secondary" size="lg" onClick={() => {mineBlockV2()}}>MINE! </Button>
