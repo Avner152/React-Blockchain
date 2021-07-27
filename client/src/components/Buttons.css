@@ -1,7 +1,9 @@
 .btn_container{
+  display: block;
   margin-top: 1vw!important;
-  width: 70%;
-  margin: auto;}
+  margin-left: -3.1vw;
+  width: 80%;
+}
 
 * {
   margin: 0;
@@ -10,6 +12,19 @@
   font-family: "Righteous", cursive;
   border-radius: 25px;
 }
+
+.btn_container a {
+  margin-left: 5.5vw;
+  width: 14vw;
+  padding: 5px 10px;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
+}
+
 a {
   width: 200px;
   padding: 5px 10px;

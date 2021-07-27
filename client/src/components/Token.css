@@ -1,0 +1,27 @@
+.token_container{
+    width: 100%;
+}
+
+.child{
+    display: flex;
+    width: 29%;
+    margin: auto;
+    margin-top: 2vw;
+    
+}
+
+.tx_header{
+    margin-right: 2vw;
+}
+
+
+.new_input{
+    padding-left: 1.8vw;
+    margin-left: -1.7vw !important;
+}
+.grey_higlight{
+    background-color: grey;
+    border-radius: 10px;
+    margin-left: .2vw;
+    border: 2px solid black;
+}

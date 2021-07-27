@@ -52,7 +52,7 @@ const  randomkeys = () => {
               </div>
               {/* Check CSS */}
               <div className="btn_container" onClick={() => {randomkeys()}}>
-              <Buttons name = {"RANDOM!"}>Random</Buttons>
+              <a name = {"RANDOM!"}><b>Random</b></a>
               </div>
                   </div>
 

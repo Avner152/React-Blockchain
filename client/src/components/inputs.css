@@ -9,6 +9,10 @@
   font-size: 1.1vw;
 }
 
+#hash_input{
+  cursor: no-drop;
+}
+
 .form__field {
   font-family: "Viaoda Libre", cursive;
   width: 25vw;

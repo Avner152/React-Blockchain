@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Tabs.css";
-
+import Tx from './Tx'
 function Transtab() {
   const [toggleState, setToggleState] = useState(1);
 
@@ -32,12 +32,7 @@ function Transtab() {
           className={toggleState === 1 ? "content  active-content" : "content"}
         >
           <h3>Message</h3>
-          <div id ="first">
-          <h2>$</h2><input></input>
-          <h2>from</h2><input></input>
-          <h2>-&gt;</h2><input></input>
-            
-            </div>
+        <Tx></Tx>
           <h3>Private Key</h3>
           <input></input>
 

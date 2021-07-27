@@ -2,7 +2,6 @@ import { Block, BlockChain } from "../model/block";
 import "./inputs.css";
 import Buttons from "./Buttons";
 import React, { useState } from 'react';
-import { Button} from 'react-bootstrap';
 import { createApiClient } from "../api";
 const SHA256 = require("crypto-js/sha256");
 
@@ -49,7 +48,7 @@ function Inputs(props) {
       </h2>
       <input
         type="input"
-        id="hash_input"
+        // id="hash_input"
         class="form__field"
         value = {id}
         readOnly = {true}
@@ -61,7 +60,7 @@ function Inputs(props) {
       </h2>
       <input
         type="input"
-        id="hash_input"
+        // id="hash_input"
         class="form__field"
         value = {nonce}
         onChange={event => {setNonce(event.target.value); calculateHash() }}
@@ -72,7 +71,7 @@ function Inputs(props) {
       </h2>
       {/* Todo:  create Component of Transaction */}
       <textarea
-        value = {data[0].amount +", "+ data[0].from +", "+ data[0].to}
+        // value = {data[0].amount +", "+ data[0].from +", "+ data[0].to}
         onChange={event => {setData(event.target.value); calculateHash() }}
  
       ></textarea>
@@ -92,6 +91,7 @@ function Inputs(props) {
       <input
         type="text"
         class="form__field"
+        id="hash_input"
         value = {hash}
         onChange={event => {setHash(event.target.value); }}
         readonly="readonly"

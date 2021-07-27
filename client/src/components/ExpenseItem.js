@@ -1,8 +1,6 @@
 import { Tab } from "react-bootstrap";
 import "./ExpenseItem.css";
 import Inputs from "./Inputs";
-import Tabs from "./Tabs";
-import Transtab from "./Transtab";
 
 
 function ExpenseItem(props) {

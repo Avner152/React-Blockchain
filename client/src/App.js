@@ -2,6 +2,7 @@ import Keys from "./components/Keys";
 import ExpenseItem from "./components/ExpenseItem";
 import NewBlock from "./components/NewBlock";
 import Tabs from "./components/Tabs";
+import Token from "./components/Token";
 import Transtab from "./components/Transtab";
 import { createApiClient } from "./api";
 import "./App.css";
@@ -59,13 +60,13 @@ function App() {
       blocks.map((block) => {
         var trans = [];
 
-        var transArray = block.transactions.split("\n");
-        console.log(transArray);
-        transArray.map((tran) => {
-          tran = tran.split(",");
-          console.log("1 tran is " + tran);
-          trans.push(new Transaction(tran[0], tran[1], tran[2]));
-        });
+        // var transArray = block.transactions.split("\n");
+        // console.log(transArray);
+        // transArray.map((tran) => {
+        //   tran = tran.split(",");
+        //   console.log("1 tran is " + tran);
+        //   trans.push(new Transaction(tran[0], tran[1], tran[2]));
+        // });
         var temp = new Block(
           block.id,
           block.nonce,
