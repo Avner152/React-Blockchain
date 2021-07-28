@@ -124,15 +124,24 @@
     border-radius: 1.1vw;
     display: block;
   }
-  
 
-  #first{
+
+  .first{
     display: -webkit-box;
     margin-left: -0.6vw;
     width: 29%;
+    margin-bottom: .5vw;
+
     }
 
-  #first h2{
+    .second{
+      display: -webkit-box;
+      margin-left: -0.6vw;
+      width: 29%;
+      margin-bottom: 1.2vw;
+    }
+
+  .first h2, .second h2{
     font-size: 1.3vw;
     border-radius: 7px;
     margin-top: -.2vw;
@@ -141,10 +150,22 @@
     margin-left: -0.4vw !important;
   }
 
-  #first input{
+  .first input{
     border-radius: 5px;
     height: 2.8vw;
     margin-top: -0.44vw;
     margin-left: -.4vw;
     padding: .5vw;
-    border: solid #07406675;  }
+    border: solid #07406675; 
+   }
+
+    .second input{
+      border-radius: 5px;
+      height: 2.8vw;
+      width: 28vw;
+      margin-top: -0.44vw;
+      margin-left: -.4vw;
+      padding: .5vw;
+      border: solid #07406675; 
+    
+    }

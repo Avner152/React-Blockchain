@@ -2,6 +2,7 @@ import Keys from "./components/Keys";
 import ExpenseItem from "./components/ExpenseItem";
 import NewBlock from "./components/NewBlock";
 import Tabs from "./components/Tabs";
+import Tx from "./components/Tx";
 import Token from "./components/Token";
 import Transtab from "./components/Transtab";
 import { createApiClient } from "./api";
@@ -84,7 +85,7 @@ function App() {
     <div className="App">
       <div>
         <nav class="navMenu">
-          <Link to="/">
+          <Link to="/#">
             <a>Home</a>
           </Link>
           <Link to="/hash">
@@ -103,7 +104,7 @@ function App() {
         {/* Route components are rendered if the path prop matches the current URL */}
         <div class="avner">
           <Route path="/">
-            <Home />
+            <Home/>
           </Route>
           <Route path="/hash">
             <ExpenseItem blockchain={bitCoin.chain} />{" "}

@@ -32,7 +32,12 @@ function Transtab() {
           className={toggleState === 1 ? "content  active-content" : "content"}
         >
           <h3>Message</h3>
-        <Tx></Tx>
+          <div class ="first">
+          <h2>$</h2><input></input>
+          <h2>from</h2><input></input>
+          <h2>-&gt;</h2><input></input>       
+      </div>
+
           <h3>Private Key</h3>
           <input></input>
 
