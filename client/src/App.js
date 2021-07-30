@@ -46,7 +46,10 @@ function App() {
 
   useEffect(() => {
     const fetchBlockChain = async () => {
-      try {
+   
+    };
+    fetchBlockChain();
+       try {
         const countResponse = api.getBlocksCount();
         const blocksResponse = api.getBlocks();
         countResponse.then((res) => setBlocksCount(res));
@@ -54,20 +57,18 @@ function App() {
       } catch (error) {
         console.log(error);
       }
-    };
-    fetchBlockChain();
 
     if (blocksCount > 0) {
       blocks.map((block) => {
         var trans = [];
 
-        // var transArray = block.transactions.split("\n");
-        // console.log(transArray);
-        // transArray.map((tran) => {
-        //   tran = tran.split(",");
-        //   console.log("1 tran is " + tran);
-        //   trans.push(new Transaction(tran[0], tran[1], tran[2]));
-        // });
+        var transArray = block.transactions.split("\n");
+        console.log(transArray);
+        transArray.map((tran) => {
+          tran = tran.split(",");
+          console.log("1 tran is " + tran);
+          trans.push(new Transaction(tran[0], tran[1], tran[2]));
+        });
         var temp = new Block(
           block.id,
           block.nonce,
