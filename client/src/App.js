@@ -2,85 +2,49 @@ import Keys from "./components/Keys";
 import ExpenseItem from "./components/ExpenseItem";
 import NewBlock from "./components/NewBlock";
 import Tabs from "./components/Tabs";
-import Tx from "./components/Tx";
-import Token from "./components/Token";
 import Transtab from "./components/Transtab";
+import Token from "./components/Token";
 import { createApiClient } from "./api";
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import { Link, Route, Switch } from "react-router-dom";
-
-const { BlockChain, Block, Transaction } = require("./model/block");
-
-var bitCoin = new BlockChain();
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { Link, Route, withRouter } from "react-router-dom";
 
 const api = createApiClient();
 
 function App() {
   const [blocksCount, setBlocksCount] = useState(-2);
-  const [blocks, setChain] = useState([
-    {
-      id: "",
-      nonce: "",
-      transaction: "",
-      prevHash: "",
-      hash: "",
-      timeStamp: "",
-    },
-  ]);
-
-  const last_block = bitCoin.getLatestBlock();
+  const [blocks, setChain] = useState([]);
+  
   const Home = () => <div>{/* <h2>Home</h2> */}</div>;
 
-  const Hash = () => (
-    <div>
-      <h2>Hash</h2>
-    </div>
-  );
 
-  const Chain = () => (
-    <div>
-      <h2>chain</h2>
-    </div>
-  );
 
-  useEffect(() => {
-    const fetchBlockChain = async () => {
-   
-    };
-    fetchBlockChain();
-       try {
-        const countResponse = api.getBlocksCount();
-        const blocksResponse = api.getBlocks();
-        countResponse.then((res) => setBlocksCount(res));
-        blocksResponse.then((res) => setChain(res));
-      } catch (error) {
-        console.log(error);
-      }
-
-    if (blocksCount > 0) {
-      blocks.map((block) => {
-        var trans = [];
-
-        var transArray = block.transactions.split("\n");
-        console.log(transArray);
-        transArray.map((tran) => {
-          tran = tran.split(",");
-          console.log("1 tran is " + tran);
-          trans.push(new Transaction(tran[0], tran[1], tran[2]));
-        });
-        var temp = new Block(
-          block.id,
-          block.nonce,
-          trans,
-          block.hash,
-          block.prevHash,
-          block.timeStamp
-        );
-        bitCoin.addBlock(temp);
-      });
+  useEffect( async() => {
+    try {
+      const blocksResponse = api.getBlocks();
+      blocksResponse.then((res) => setChain(res));
+      console.log(blocks);
+    } catch (error) {
+      console.log(error);
     }
+
+
   }, [blocksCount]);
+
+
+  useEffect(async () => {
+    try {
+      const countResponse =  api.getBlocksCount();
+      countResponse.then((res) => setBlocksCount(res));
+
+    } catch (error) {
+      console.log(error);
+    }
+
+
+  },[blocksCount] );
+ 
+  
 
   return (
     <div className="App">
@@ -98,6 +62,9 @@ function App() {
           <Link to="/new">
             <a>Create New</a>
           </Link>
+          <Link to="/token">
+            <a>Tokens</a>
+          </Link>
           <div class="dot"></div>
         </nav>
 
@@ -108,7 +75,7 @@ function App() {
             <Home/>
           </Route>
           <Route path="/hash">
-            <ExpenseItem blockchain={bitCoin.chain} />{" "}
+            <ExpenseItem blockchain={blocks} />{" "}
           </Route>
           <Route path="/keys">
             <Keys /> 
@@ -116,7 +83,10 @@ function App() {
             <Transtab />
           </Route>
           <Route path="/new">
-            <NewBlock id={blocksCount + 1} prevHash={last_block.hash} />
+            <NewBlock id={blocksCount + 1} prevHash={blocksCount>0? blocks[blocksCount-1].hash: 0} />
+          </Route>
+          <Route path="/token">
+            <Token block = {blocks[3]} />
           </Route>
         </div>
       </div>
@@ -124,4 +94,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

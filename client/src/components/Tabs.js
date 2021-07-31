@@ -17,11 +17,12 @@ function Tabs() {
     setToggleState(index);
   };
 
-  const sign = () => {
+   const sign = () => {
     var keypair = ec.keyFromPrivate(privateKey);
     var binaryMessage = CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex);
     var hexSignature = keypair.sign(binaryMessage).toDER("hex").toString();
     setSignature(hexSignature);
+    document.getElementById('sign').style.backgroundColor = '#f1f1f1';
   };
 
   const verify = () => {
@@ -70,9 +71,9 @@ function Tabs() {
             onChange={(event) => setPrivateKey(event.target.value)}
           ></input>
 
-          <a id="sign_btn" onClick={() => sign()}>
+          <div id="sign_btn" onClick={() => sign()}>
             <b>Sign</b>
-          </a>
+          </div>
 
           <h3>Message Signature</h3>
           <input value={signature} readOnly={true}></input>
@@ -86,7 +87,7 @@ function Tabs() {
             value={message}
           ></textarea>
           <h3>Public Key</h3>
-          <input value={publicKey} readOnly></input>
+          <input value={publicKey} onChange={(event) => setPublicKey(event.target.value)} ></input>
 
           <br />
           <br />
@@ -94,9 +95,9 @@ function Tabs() {
 
           <input value={signature} readOnly></input>
 
-          <a id="sign_btn" onClick={() => verify()}>
+          <div id="sign_btn" onClick={() => verify()}>
             <b>Verify</b>
-          </a>
+          </div>
         </div>
       </div>
     </div>

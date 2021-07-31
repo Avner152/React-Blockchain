@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import CreateButton from './CreateButton'
+import React, { useState } from 'react';
 import "./inputs.css";
 import { createApiClient } from "../api";
 import { Button} from 'react-bootstrap';
 const SHA256 = require("crypto-js/sha256");
+
 
 
 
@@ -16,7 +16,7 @@ function NewBlock(props) {
   const [nonce, setNonce] = useState(0);
   const [data, setData] = useState("")
   const [hash, setHash] = useState("")
-  const [timeStamp, settimeStamp] = useState(Date.now)
+  const [timeStamp] = useState(Date.now)
 
   const calculateHash = () => {
     setHash( SHA256(
@@ -32,13 +32,16 @@ function NewBlock(props) {
     try {
       console.log(hash, nonce)
    const response = api.mineBlock(hash, ""+(id-1)+prevHash+timeStamp+data);
-   console.log(response)
       response.then(res => {setHash(res.hash); setNonce(res.nonce)})
-    
-      
+
     } catch (error) {
       console.log(error)   
     }
+   };
+
+   const createBlock = async () => {
+    api.createBlock(id, nonce,  data, prevHash, hash, timeStamp).then()
+    .catch(err => console.error(err))
    };
 
     
@@ -95,10 +98,7 @@ function NewBlock(props) {
         id="input5"
         value = {hash}
       ></input>
-      <Button variant="primary" size="lg" active onClick={() => { 
-        api.createBlock(id, nonce,  data, prevHash, hash, timeStamp).
-        then()
-        .catch(err => console.error(err))}}>Create Block!</Button>
+      <Button variant="primary" size="lg" active onClick={() => createBlock()}>Create Block!</Button>
       <Button variant="secondary" size="lg" onClick={() => {mineBlockV2()}}>MINE! </Button>
     
     </div>

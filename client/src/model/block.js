@@ -39,6 +39,8 @@ class Block {
   }
 }
 
+  
+ 
 class BlockChain {
   constructor() {
     this.chain = [this.createGenesisBlock()];
@@ -56,6 +58,23 @@ class BlockChain {
     block.prevHash = this.getLatestBlock().hash;
     //block.mineBlock(this.difficulty);
     this.chain.push(block);
+  }
+  isValid() {
+    for (let i = 1; i < this.chain.length; i++) {
+      const currentBlock = this.chain[i];
+      const previousBlock = this.chain[i - 1];
+
+      if (previousBlock.hash !== currentBlock.previousHash) {
+        return false;
+      }
+
+
+      if (currentBlock.hash !== currentBlock.calculateHash()) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }
 

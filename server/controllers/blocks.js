@@ -21,7 +21,7 @@ export const getAllBlocks = async (req, res) => {
 
 export const getBlocksCount = async (req, res) => {
     try {
-        const count = await Block.count();
+        const count = await Block.countDocuments();
         console.log("number of blocks is: " + count);
         res.send({count});
     }catch (error) {
@@ -52,7 +52,9 @@ export const mineBlock =  async (req, res) => {
     const post = req.query
     try {
     var hash = post.hash
-    var nonce = 0
+   
+    if(hash.substring(0, DIFFICULTY) !== Array(DIFFICULTY + 1).join("0"))
+        var nonce = 0;
     while( hash.substring(0, DIFFICULTY) !== Array(DIFFICULTY + 1).join("0")){
         nonce= nonce+1;
        hash = calculateHash(post.text , nonce)

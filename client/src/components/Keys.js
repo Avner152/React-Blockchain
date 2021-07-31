@@ -1,13 +1,10 @@
 import { useState } from "react";
 import "./Keys.css";
-import Buttons from './Buttons';
-import { createApiClient } from "../api";
 import Cookies from 'universal-cookie';
 
 
 const EC = require("elliptic").ec;
 const ec = new EC("secp256k1");
-const api = createApiClient();
 const cookies = new Cookies();
 
 

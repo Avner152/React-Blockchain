@@ -1,4 +1,3 @@
-import { Block, BlockChain } from "../model/block";
 import "./inputs.css";
 import Buttons from "./Buttons";
 import React, { useState } from 'react';
@@ -12,9 +11,9 @@ function Inputs(props) {
   var id = props.block.index
   const prevHash = props.block.prevHash
   const [nonce, setNonce] = useState(props.block.nonce);
-  const [data, setData] = useState(props.block.transaction)
+  const [data, setData] = useState(props.block.transaction[0].amount+", "+props.block.transaction[0].from+", "+props.block.transaction[0].to)
   const [hash, setHash] = useState(props.block.hash)
-  const [timeStamp, settimeStamp] = useState("")
+  const [timeStamp, settimeStamp] = useState(props.block.timeStamp)
 
   const calculateHash = () => {
     setHash( SHA256(
@@ -71,7 +70,7 @@ function Inputs(props) {
       </h2>
       {/* Todo:  create Component of Transaction */}
       <textarea
-        // value = {data[0].amount +", "+ data[0].from +", "+ data[0].to}
+         value = {data}
         onChange={event => {setData(event.target.value); calculateHash() }}
  
       ></textarea>
