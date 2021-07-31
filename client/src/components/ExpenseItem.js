@@ -11,10 +11,8 @@ function ExpenseItem(props) {
           var trans = [];
   
           var transArray = block.transactions.split("\n");
-          console.log(transArray);
           transArray.map((tran) => {
             tran = tran.split(",");
-            console.log("1 tran is " + tran);
             trans.push(new Transaction(tran[0], tran[1], tran[2]));
           });
           var temp = new Block(
@@ -36,8 +34,8 @@ function ExpenseItem(props) {
     <div className="expense-item">
       <ul>
         {bitCoin.chain.map((block) => (
-          <div className="son" id={block.id} >
-            <Inputs block={block} />
+          <div className ="son" id = {"block_"+block.index} >
+            <Inputs block={block}  size = {bitCoin.chain.length} />
           </div>
         ))}
       </ul>

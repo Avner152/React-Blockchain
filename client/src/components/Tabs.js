@@ -95,7 +95,7 @@ function Tabs() {
 
           <input value={signature} readOnly></input>
 
-          <div id="sign_btn" onClick={() => verify()}>
+          <div id="sign_btn" onClick={() =>signature? verify(): ""}>
             <b>Verify</b>
           </div>
         </div>

@@ -14,16 +14,23 @@ const api = createApiClient();
 function App() {
   const [blocksCount, setBlocksCount] = useState(-2);
   const [blocks, setChain] = useState([]);
-  
   const Home = () => <div>{/* <h2>Home</h2> */}</div>;
 
-
-
-  useEffect( async() => {
+  useEffect(async () => {
     try {
       const blocksResponse = api.getBlocks();
       blocksResponse.then((res) => setChain(res));
-      console.log(blocks);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [blocksCount]);
+
+
+  useEffect(async () => {
+    try {
+      const countResponse = api.getBlocksCount();
+      countResponse.then((res) => setBlocksCount(res));
+
     } catch (error) {
       console.log(error);
     }
@@ -32,19 +39,6 @@ function App() {
   }, [blocksCount]);
 
 
-  useEffect(async () => {
-    try {
-      const countResponse =  api.getBlocksCount();
-      countResponse.then((res) => setBlocksCount(res));
-
-    } catch (error) {
-      console.log(error);
-    }
-
-
-  },[blocksCount] );
- 
-  
 
   return (
     <div className="App">
@@ -72,21 +66,21 @@ function App() {
         {/* Route components are rendered if the path prop matches the current URL */}
         <div class="avner">
           <Route path="/">
-            <Home/>
+            <Home />
           </Route>
           <Route path="/hash">
             <ExpenseItem blockchain={blocks} />{" "}
           </Route>
           <Route path="/keys">
-            <Keys /> 
+            <Keys />
             <Tabs />
             <Transtab />
           </Route>
           <Route path="/new">
-            <NewBlock id={blocksCount + 1} prevHash={blocksCount>0? blocks[blocksCount-1].hash: 0} />
+            <NewBlock id={blocksCount + 1} prevHash={blocksCount > 0 ? blocks[blocksCount - 1].hash : 0} />
           </Route>
           <Route path="/token">
-            <Token block = {blocks[3]} />
+            <Token block={blocks[3]} />
           </Route>
         </div>
       </div>
