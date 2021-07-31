@@ -40,5 +40,6 @@ textarea {
   background: transparent;
   transition: border-color 0.2s;
   padding-left: 1vw;
+  margin-right: 2vw;
 }
 

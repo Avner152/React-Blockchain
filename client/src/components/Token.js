@@ -12,14 +12,10 @@ const cookies = new Cookies();
 
 
 function Token(props) {
-
-
         const genPublic = () => {
                 var key = ec.genKeyPair();
                 return key.getPublic('hex')
-
         }
-
 
 
         return (
@@ -67,9 +63,6 @@ function Token(props) {
                 <div className="btn_container" onClick={() => { }}>
                         <Buttons name={'MINE!'}></Buttons>
                 </div>
-
-
-
         </div>)
 }
 

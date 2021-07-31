@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./inputs.css";
 import { createApiClient } from "../api";
-import { Button} from 'react-bootstrap';
+import Buttons from "./Buttons"
 const SHA256 = require("crypto-js/sha256");
 
 
@@ -98,9 +98,14 @@ function NewBlock(props) {
         id="input5"
         value = {hash}
       ></input>
-      <Button variant="primary" size="lg" active onClick={() => createBlock()}>Create Block!</Button>
-      <Button variant="secondary" size="lg" onClick={() => {mineBlockV2()}}>MINE! </Button>
-    
+      <div class='token_btns'>
+      <div class = 'son_token_btn' onClick={() => createBlock()}>
+      <a>Create Block!</a>
+      </div>
+      <div class = 'son_token_btn' onClick={() => {mineBlockV2()}}>
+      <a>MINE!</a>
+      </div>
+      </div>
     </div>
   );
 }

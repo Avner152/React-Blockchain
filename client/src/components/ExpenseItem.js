@@ -27,9 +27,7 @@ function ExpenseItem(props) {
         });
       
 
-
-
-  console.log(props.blockchain)
+  // console.log(props.blockchain)
   return (
     <div className="expense-item">
       <ul>

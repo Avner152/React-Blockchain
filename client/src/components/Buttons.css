@@ -5,6 +5,11 @@
   width: 80%;
 }
 
+.token_container .btns_father{
+  margin-left: 38vw;
+
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +18,23 @@
   border-radius: 25px;
 }
 
+.token_btns{
+  width: 102%;
+  display: flex;
+  margin: auto;
+  margin-top: .5vw;
+
+}
+.son_token_btn{
+  width: 47%;
+  background-color: #444;
+  color: #3eb1fd;
+  margin-top: .5vw;
+}
+
 .btn_container a {
-  margin-left: 5.5vw;
+  background-color: #3eb1fd;
+  margin-left: 8.5vw;
   width: 14vw;
   padding: 5px 10px;
   position: relative;
@@ -26,7 +46,7 @@
 }
 
 a {
-  width: 200px;
+  /* width: 200px; */
   padding: 5px 10px;
   position: relative;
   cursor: pointer;
